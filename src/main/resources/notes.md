@@ -13,3 +13,5 @@
 - increases quality
 - promotes interoperability
 - collection is an object that groups other objects.
+- the collection interface is the root interface extended by most collection types
+- 
