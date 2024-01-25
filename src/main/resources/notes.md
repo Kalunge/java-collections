@@ -5,3 +5,11 @@
  - organize 
  - manage 
 - retrieve data
+## Java collection Framework
+- interfaces - abstract types that define the methods available on a collection
+- Algorithms - sorting, searching e.t.c
+- Implementations - classes providing logic that completes and satisfies
+- reduces effort
+- increases quality
+- promotes interoperability
+- collection is an object that groups other objects.

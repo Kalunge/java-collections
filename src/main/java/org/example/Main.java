@@ -1,17 +1,32 @@
 package org.example;
 
+import org.example.introduction.Room;
+
+import java.util.Collection;
+import java.util.List;
+
 //TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 public class Main {
     public static void main(String[] args) {
-        //TIP Press <shortcut actionId="ShowIntentionActions"/> with your caret at the highlighted text
-        // to see how IntelliJ IDEA suggests fixing it.
-        System.out.printf("Hello and welcome!");
+        Room cambridge = new Room("Cambridge", "Premier Room", 4, 175.00);
+        Room manchester = new Room("manchester", "Suite", 5, 250);
+        Room piccadilly = new Room("picadily", "Guest Room", 3, 125.0);
 
-        for (int i = 1; i <= 5; i++) {
-            //TIP Press <shortcut actionId="Debug"/> to start debugging your code. We have set one <icon src="AllIcons.Debugger.Db_set_breakpoint"/> breakpoint
-            // for you, but you can always add more by pressing <shortcut actionId="ToggleLineBreakpoint"/>.
-            System.out.println("i = " + i);
-        }
+        Collection<Room> rooms = List.of(cambridge, manchester, piccadilly);
+
+
+        double total = getPotentialRoomRevenue(rooms);
+
+        System.out.println(total);
     }
+
+    private static double getPotentialRoomRevenue(Collection<Room> rooms) {
+
+        return rooms.stream().mapToDouble(room -> room.getRate()).sum();
+
+//        return roomOne.getRate() + roomTwo.getRate() + roomThree.getRate();
+    }
+
+
 }
