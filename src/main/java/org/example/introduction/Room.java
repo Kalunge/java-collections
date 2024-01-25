@@ -1,15 +1,19 @@
 package org.example.introduction;
 
 import javax.xml.namespace.QName;
+import java.util.Objects;
 
 public class Room {
+
     private String name;
+
     private String type;
-    private double capacity;
+
+    private int capacity;
+
     private double rate;
 
-
-    public Room(String name, String type, double capacity, double rate) {
+    public Room(String name, String type, int capacity, double rate) {
         this.name = name;
         this.type = type;
         this.capacity = capacity;
@@ -32,11 +36,11 @@ public class Room {
         this.type = type;
     }
 
-    public double getCapacity() {
+    public int getCapacity() {
         return capacity;
     }
 
-    public void setCapacity(double capacity) {
+    public void setCapacity(int capacity) {
         this.capacity = capacity;
     }
 
@@ -46,5 +50,29 @@ public class Room {
 
     public void setRate(double rate) {
         this.rate = rate;
+    }
+
+    public Room(String name, String type) {
+        super();
+        this.name = name;
+        this.type = type;
+    }
+
+    @Override
+    public String toString() {
+        return "Room [name=" + name + ", type=" + type + ", capacity=" + capacity + ", rate=" + rate + "]";
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Room room = (Room) o;
+        return capacity == room.capacity && Double.compare(rate, room.rate) == 0 && Objects.equals(name, room.name) && Objects.equals(type, room.type);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, type, capacity, rate);
     }
 }

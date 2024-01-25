@@ -28,7 +28,7 @@ public class App {
 //
         Collection<Room> collectionTwo = new ArrayList<>();
         collectionTwo.add(new Room("cambridge", "suite", 5, 172.44));
-        collectionTwo.stream().forEach(e -> System.out.println(e.getCapacity()));
+        collectionTwo.forEach(e -> System.out.println(e.getCapacity()));
 //        System.out.println(favouriteThings);
 //        System.out.println(collection);
 
