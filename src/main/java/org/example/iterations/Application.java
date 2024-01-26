@@ -6,6 +6,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Iterator;
+import java.util.function.Consumer;
+import java.util.function.Predicate;
 
 public class Application {
     public static void main(String[] args) {
@@ -18,28 +20,18 @@ public class Application {
         oxford.setPetFriendly(true);
         cambridge.setPetFriendly(true);
 
-        Iterator<Room> iterator = rooms.iterator();
-
-        while (iterator.hasNext()) {
-            Room room = iterator.next();
-
-            if (room.isPetFriendly()) {
-               iterator.remove();
-            }
-        }
-
-//        Collection<Room> removeRooms = new ArrayList<>();
-//        for (Room room : rooms) {
-//            if (room.isPetFriendly()) {
-//                removeRooms.add(room);
-//            }
-//        }
-//
-//        rooms.removeAll(removeRooms);
-
-        rooms.stream().forEach(r -> System.out.println(r.getName()));
-
-
+        rooms.stream()
+                .filter(new Predicate<Room>() {
+                    @Override
+                    public boolean test(Room room) {
+                        return room.isPetFriendly();
+                    }
+                }).forEach(new Consumer<Room>() {
+                    @Override
+                    public void accept(Room room) {
+                        System.out.println(room.getName());
+                    }
+                });
 
 
     }
