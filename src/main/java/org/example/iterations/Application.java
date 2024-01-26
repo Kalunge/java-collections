@@ -15,21 +15,32 @@ public class Application {
         Room oxford = new Room("oxford", "Guest Room", 6, 250);
 
         Collection<Room> rooms = new ArrayList<>(Arrays.asList(cambridge, manchester, piccadilly, oxford));
+        oxford.setPetFriendly(true);
+        cambridge.setPetFriendly(true);
 
-        for(Room room : rooms) {
-            System.out.println(room.getName());
+        Iterator<Room> iterator = rooms.iterator();
+
+        while (iterator.hasNext()) {
+            Room room = iterator.next();
+
+            if (room.isPetFriendly()) {
+               iterator.remove();
+            }
         }
 
-//        Iterator<Room> iterator = rooms.iterator();
-//
-//        while (iterator.hasNext()) {
-//            Room room = iterator.next();
-//            System.out.println(room.getName());
+//        Collection<Room> removeRooms = new ArrayList<>();
+//        for (Room room : rooms) {
+//            if (room.isPetFriendly()) {
+//                removeRooms.add(room);
+//            }
 //        }
-
 //
-//        System.out.println(iterator.next().getName());
-//        System.out.println(iterator.next().getName());
-//        System.out.println(iterator.next().getName());
+//        rooms.removeAll(removeRooms);
+
+        rooms.stream().forEach(r -> System.out.println(r.getName()));
+
+
+
+
     }
 }

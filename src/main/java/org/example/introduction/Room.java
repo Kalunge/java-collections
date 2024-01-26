@@ -13,11 +13,14 @@ public class Room {
 
     private double rate;
 
+    private boolean isPetFriendly;
+
     public Room(String name, String type, int capacity, double rate) {
         this.name = name;
         this.type = type;
         this.capacity = capacity;
         this.rate = rate;
+        this.isPetFriendly = false;
     }
 
     public String getName() {
@@ -60,7 +63,21 @@ public class Room {
 
     @Override
     public String toString() {
-        return "Room [name=" + name + ", type=" + type + ", capacity=" + capacity + ", rate=" + rate + "]";
+        return "Room{" +
+                "name='" + name + '\'' +
+                ", type='" + type + '\'' +
+                ", capacity=" + capacity +
+                ", rate=" + rate +
+                ", isPetFriendly=" + isPetFriendly +
+                '}';
+    }
+
+    public boolean isPetFriendly() {
+        return isPetFriendly;
+    }
+
+    public void setPetFriendly(boolean petFriendly) {
+        isPetFriendly = petFriendly;
     }
 
     @Override
@@ -68,11 +85,11 @@ public class Room {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Room room = (Room) o;
-        return capacity == room.capacity && Double.compare(rate, room.rate) == 0 && Objects.equals(name, room.name) && Objects.equals(type, room.type);
+        return capacity == room.capacity && Double.compare(rate, room.rate) == 0 && isPetFriendly == room.isPetFriendly && Objects.equals(name, room.name) && Objects.equals(type, room.type);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(name, type, capacity, rate);
+        return Objects.hash(name, type, capacity, rate, isPetFriendly);
     }
 }
