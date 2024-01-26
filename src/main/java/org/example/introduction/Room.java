@@ -13,14 +13,13 @@ public class Room {
 
     private double rate;
 
-    private boolean isPetFriendly;
+    private boolean petFriendly;
 
     public Room(String name, String type, int capacity, double rate) {
         this.name = name;
         this.type = type;
         this.capacity = capacity;
         this.rate = rate;
-        this.isPetFriendly = false;
     }
 
     public String getName() {
@@ -55,41 +54,47 @@ public class Room {
         this.rate = rate;
     }
 
-    public Room(String name, String type) {
-        super();
-        this.name = name;
-        this.type = type;
+    public boolean isPetFriendly() {
+        return petFriendly;
+    }
+
+    public void setPetFriendly(boolean petFriendly) {
+        this.petFriendly = petFriendly;
     }
 
     @Override
     public String toString() {
-        return "Room{" +
-                "name='" + name + '\'' +
-                ", type='" + type + '\'' +
-                ", capacity=" + capacity +
-                ", rate=" + rate +
-                ", isPetFriendly=" + isPetFriendly +
-                '}';
-    }
-
-    public boolean isPetFriendly() {
-        return isPetFriendly;
-    }
-
-    public void setPetFriendly(boolean petFriendly) {
-        isPetFriendly = petFriendly;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Room room = (Room) o;
-        return capacity == room.capacity && Double.compare(rate, room.rate) == 0 && isPetFriendly == room.isPetFriendly && Objects.equals(name, room.name) && Objects.equals(type, room.type);
+        return "Room [name=" + name + ", type=" + type + ", capacity=" + capacity + ", rate=" + rate + "]";
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(name, type, capacity, rate, isPetFriendly);
+        final int prime = 31;
+        int result = 1;
+        result = prime * result + ((name == null) ? 0 : name.hashCode());
+        long temp;
+        temp = Double.doubleToLongBits(rate);
+        result = prime * result + (int) (temp ^ (temp >>> 32));
+        return result;
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        Room other = (Room) obj;
+        if (name == null) {
+            if (other.name != null)
+                return false;
+        } else if (!name.equals(other.name))
+            return false;
+        if (Double.doubleToLongBits(rate) != Double.doubleToLongBits(other.rate))
+            return false;
+        return true;
+    }
+
 }

@@ -2,9 +2,8 @@ package org.example.iterations;
 
 import org.example.introduction.Room;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collection;
+import java.util.*;
+import java.util.stream.Collectors;
 
 
 public class Application {
@@ -13,15 +12,24 @@ public class Application {
         Room manchester = new Room("manchester", "Suite", 5, 250);
         Room piccadilly = new Room("picadily", "Guest Room", 3, 125.0);
         Room oxford = new Room("oxford", "Guest Room", 6, 250);
+        Room oxfordDuplicate = new Room("oxford", "Guest Room", 6, 250);
 
-        Collection<Room> rooms = new ArrayList<>(Arrays.asList(cambridge, manchester, piccadilly, oxford));
-        oxford.setPetFriendly(true);
-        cambridge.setPetFriendly(true);
-
-        rooms.stream().filter(Room::isPetFriendly).forEach(room -> System.out.println(room.getName()));
+        Set<Room> rooms = new HashSet<>();
+        Set<Room> otherRooms = Set.of(piccadilly, oxford);
+//        otherRooms.add(cambridge);
 
 
-//        rooms.stream().filter(room -> room.isPetFriendly()).forEach(room -> System.out.println(room.getName()));
+        rooms.add(piccadilly);
+        rooms.add(oxford);
+        rooms.add(oxford);
+        rooms.add(oxfordDuplicate);
+        rooms.add(manchester);
+
+
+        Set<Room> moreRooms = Set.copyOf(rooms);
+
+        moreRooms.stream().map(r -> r.getName()).forEach(System.out::println);
+
 
     }
 
