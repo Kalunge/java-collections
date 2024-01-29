@@ -10,20 +10,30 @@ import java.util.stream.Collectors;
 public class Application {
     public static void main(String[] args) {
 
-        Deque<String> messageStack = new ArrayDeque<>();
-        messageStack.push("Message 1");
-        messageStack.push("Message 2");
-        messageStack.push("Message 3");
-        messageStack.push("Message 4");
+        Guest john = new Guest("John", "Doe", false);
+        Guest maria = new Guest("Maria", "Doe", true);
 
-        print(messageStack);
-        System.out.println(messageStack.pop());
-        System.out.println(messageStack.pop());
-        print(messageStack);
-        messageStack.push("Message 5");
-        System.out.println(messageStack.peek());
+        Room victoria = new Room("Victoria", "Suite", 5, 225.00);
+        Room westminster = new Room("westminster", "Premiere Room", 4, 200.00);
 
-        print(messageStack);
+        Map<Room, Guest> assignment = new HashMap<>();
+        assignment.put(victoria, john);
+        assignment.put(westminster, maria);
+
+        Set<Map.Entry<Room, Guest>> collectionView =assignment.entrySet();
+        for (Map.Entry <Room, Guest> roomGuestEntry : collectionView) {
+            Room r = roomGuestEntry.getKey();
+            Guest g = roomGuestEntry.getValue();
+            System.out.printf("%s : %s%n", r.getName(), g.getFirstName());
+        }
+
+
+
+//        Guest guest = assignment.put(westminster, assignment.remove(victoria));
+//        assignment.putIfAbsent(victoria, guest);
+//
+//        System.out.println("victoria: " + assignment.get(victoria));
+//        System.out.println("westminister: " + assignment.get(new Room("westminster", "Premiere Room", 4, 200.00)));
     }
 
     public static void print(Queue<String> dequeue) {
