@@ -15,15 +15,15 @@ public class Application {
         Room oxford = new Room("Oxford", "Suite", 5, 225.0);
         Room oxfordSuite = new Room("Oxford", "Premiere Room", 5, 225.0);
         Room victoria = new Room("Victoria", "Suite", 5, 225.00);
-        Room westminister = new Room("Westminister", "Premiere Room", 4, 200.00);
+        Room westminster = new Room("westminster", "Premiere Room", 4, 200.00);
 
-        List<Room> rooms = new ArrayList<>(List.of(cambridge, manchester, piccadilly, oxford, oxfordSuite, victoria, westminister));
+        List<Room> rooms = new ArrayList<>(List.of(cambridge, manchester, piccadilly, oxford, oxfordSuite, victoria, westminster));
 
 //        Collections.sort(rooms);
 //        Collections.sort(rooms, Comparator.naturalOrder());
-        rooms.sort(Comparator.naturalOrder());
+        rooms.sort(Room.RATE_COMPARATOR.reversed());
 
-        rooms.stream().forEach(r -> System.out.format("%-15s %-15s -%10f %n", r.getName(), r.getType(), r.getRate()));
+        rooms.forEach(r -> System.out.format("%-15s %-15s -%10f %n", r.getName(), r.getType(), r.getRate()));
 
     }
 
